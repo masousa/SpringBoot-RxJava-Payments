@@ -1,0 +1,60 @@
+server:
+  servlet:
+    context-path: /
+  port: 9081
+  compression:
+    mime-types:
+      - application/json
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  data:
+    mongodb:
+      database: admin
+      host: localhost
+      username: admin
+      password: admin
+      port: 27017
+
+
+  application:
+    name: payment-sample-ms
+
+    
+application:
+  async:
+    corePoolSize: 20
+    maxPoolSize: 40
+    queueCapacity: 60
+
+  locale:
+    country: BR
+    language: pt
+
+info:
+  app:
+    name: ${spring.application.name}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude:
+          - scheduledtasks
+          - heapdump
+          - mappings
+          - env
+          - flyway
+          - configprops
+          - shutdown
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org:
+      apache: WARN
+    root: info
